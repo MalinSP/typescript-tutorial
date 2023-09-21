@@ -25,11 +25,29 @@ const productType: {
   },
 };
 
+// Tuples
+
+const personOne: {
+  name: string;
+  age: number;
+  hobbies: string[];
+  role: [number, string];
+} = {
+  name: "Susan",
+  age: 30,
+  hobbies: ["Sports", "Cooking"],
+  role: [2, "author"],
+};
+
 const nextPerson = {
   name: "Susan",
   age: 30,
   hobbies: ["Sports", "Cooking"],
+  role: [2, "author"],
 };
+
+nextPerson.role.push("admin");
+nextPerson.role[1] = 10;
 
 let favoriteActivities: string[];
 favoriteActivities = ["Sports"];
