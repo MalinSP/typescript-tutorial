@@ -9,3 +9,9 @@
 `npm install && npm start`
 
 Project serves on localhost:3000
+
+Change app.ts file, open new terminal
+
+`npx tsc app.ts`
+
+Changes applied
