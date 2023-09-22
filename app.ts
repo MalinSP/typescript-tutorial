@@ -1,19 +1,8 @@
-let userInput: unknown;
-let userName: string;
+const userName1 = "Johnass2323";
 
-userInput = 5;
-userInput = "Max";
+console.log(userName1);
 
-if (typeof userInput === "string") {
-  userName = userInput;
-}
-
-// never type
-
-function generateError(message: string, code: number): never {
-  throw { message: message, errorCode: code };
-  // while(true) {}
-}
-
-const result = generateError("Error happened", 300);
-console.log(result);
+// npx tsc app.ts --w
+// npx tsc --init
+// npx tsc
+// npx tsc --w
