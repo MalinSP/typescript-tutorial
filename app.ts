@@ -37,3 +37,13 @@ let user2: Greetable;
 
 user2 = new Person("Max");
 user2.greetings("Hi there");
+
+interface AddFn {
+  (a: number, b: number): number;
+}
+
+let add: AddFn;
+
+add = (n1: number, n2: number) => {
+  return n1 + n2;
+};
