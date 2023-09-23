@@ -1,10 +1,12 @@
 class Department {
+  static fiscalYear = 2020;
   // public name: string;
   //private name: string;
   protected employees: string[] = [];
 
   constructor(private readonly id: string, public name: string) {
     //this.name = n;
+    // console.log(Department.fiscalYear)
   }
 
   describe(this: Department) {
@@ -20,6 +22,10 @@ class Department {
   printEmployeeInfo() {
     console.log(this.employees.length);
     console.log(this.employees);
+  }
+
+  static createEmployee(name: string) {
+    return { name: name };
   }
 }
 
@@ -86,3 +92,9 @@ const accDep = new AccountingDepartment("acc", []);
 
 accDep.mostRecentReport = "";
 accDep.mostRecentReport;
+
+//Static Methods and Properties
+Math.PI;
+
+const employeeOne = Department.createEmployee("Max");
+console.log(Department.fiscalYear);
