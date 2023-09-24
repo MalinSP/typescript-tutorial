@@ -127,3 +127,11 @@ function moveAnimal(animal: Animal) {
 }
 
 moveAnimal({ type: "bird", flyingSpeed: 10 });
+
+// type casting
+const p = document.querySelector("p"); // HTMLParagraphElement
+const paragraph = document.getElementById("message-output"); // HTMLElement
+const input = <HTMLInputElement>document.getElementById("user-input")!; // HTMLElement
+const input2 = document.getElementById("user-input")! as HTMLInputElement; // HTMLElement
+
+input.value = "Hi there";
