@@ -135,3 +135,45 @@ const input = <HTMLInputElement>document.getElementById("user-input")!; // HTMLE
 const input2 = document.getElementById("user-input")! as HTMLInputElement; // HTMLElement
 
 input.value = "Hi there";
+
+//Index properties
+
+interface ErrorContainer {
+  // id: string;
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: "Not a valid email",
+  username: "Must",
+};
+
+// Function overloads
+function add1(a: number, b: number): number;
+function add1(a: string, b: string): string;
+function add1(a: string, b: number): string;
+
+function add1(a: Combinable, b: Combinable) {
+  if (typeof a === "string" || typeof b === "string") {
+    return a.toString() + b.toString();
+  }
+  return a + b;
+}
+
+const result = add1("Max", "Schwarz"); //as string;
+result.split(" ");
+
+// Optional Chaining
+
+const fetchUserData = {
+  id: "u1",
+  name: "Max",
+  //job: { title: "ceo", desc: "company" },
+};
+
+console.log(fetchUserData?.job?.title);
+
+// Nullish Coalescing
+const userInput = undefined;
+const storedData = userInput ?? "DEFAULT";
+console.log(storedData);
