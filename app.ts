@@ -1,49 +1,102 @@
-interface Person {
+type Admin = {
   name: string;
-  age: number;
-  greet: (phrase: string) => void;
-}
+  priviliges: string[];
+};
 
-let user1: Person;
-user1 = {
+type Employee = {
+  name: string;
+  startDate: Date;
+};
+
+type ElevatedEmployee = Admin & Employee;
+
+const e1: ElevatedEmployee = {
   name: "Max",
-  age: 30,
-  greet(phrase: string) {
-    console.log(phrase + this.name);
-  },
+  priviliges: ["create-server"],
+  startDate: new Date(),
 };
 
-user1.greet("Hi there - I am");
+// Interface
 
-//Implements interfaces
-interface Greetable {
+interface Admin1 {
   name: string;
-  greetings(phrase: string): void;
+  priviliges: string[];
 }
-interface AnotherInterface {}
 
-class Person implements Greetable, AnotherInterface {
+interface Employee1 {
   name: string;
-  age = 30;
-  constructor(n: string) {
-    this.name = n;
-  }
-  greetings(phrase: string) {
-    console.log(phrase + this.name);
-  }
+  startDate: Date;
 }
 
-let user2: Greetable;
+// interface ElevatedEmployee1 extends Employee1, Admin1 {}
+type ElevatedEmployee1 = Admin1 & Employee1;
 
-user2 = new Person("Max");
-user2.greetings("Hi there");
+//type ElevatedEmployee1 = Admin & Employee;
 
-interface AddFn {
-  (a: number, b: number): number;
-}
-
-let add: AddFn;
-
-add = (n1: number, n2: number) => {
-  return n1 + n2;
+const e2: ElevatedEmployee = {
+  name: "Max",
+  priviliges: ["create-server"],
+  startDate: new Date(),
 };
+
+type Combinable = string | number;
+type Numeric = number | boolean;
+
+type Universal = Combinable & Numeric;
+
+// type guards
+function add(a: Combinable, b: Combinable) {
+  if (typeof a === "string" || typeof b === "string") {
+    return a.toString() + b.toString();
+  }
+  return a + b;
+}
+
+type UnknownEmployee = Employee1 | Admin;
+
+function PrintEmployeeInfo(emp: UnknownEmployee) {
+  console.log(emp.name);
+  // if (typeof emp === "object") {
+  // }
+  if ("privileges" in emp) {
+    console.log(emp.privileges);
+  }
+  if ("startDate" in emp) {
+    console.log(emp.startDate);
+  }
+}
+
+PrintEmployeeInfo(e1);
+
+class Car {
+  drive() {
+    console.log("Driving car");
+  }
+}
+
+class Truck {
+  drive() {
+    console.log("Driving truck");
+  }
+  loadCargo(amount: number) {
+    console.log("Loading Cargo" + amount);
+  }
+}
+
+type Vehicle = Car | Truck;
+
+const v1 = new Car();
+const v2 = new Truck();
+
+function useVehicle(vehicle: Vehicle) {
+  vehicle.drive();
+  // if ("loadCargo" in vehicle) {
+  //   vehicle.loadCargo(1000);
+  // }
+  if (vehicle instanceof Truck) {
+    vehicle.loadCargo(1000);
+  }
+}
+
+useVehicle(v1);
+useVehicle(v2);
